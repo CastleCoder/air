@@ -21,21 +21,26 @@ function split(a,b){
   let array = [];
   let motComplet = [];
   let motComplet2 = [];
-  for(let i=0; i<a.length;i++){
-    let regex = /[\p{L}]+/gu;
-    motComplet = a.match(regex)
-    for(let j=0;j<b.length;j++){
-      motComplet2 = b.match(regex);
-      if(motComplet[i] === motComplet2[j] ){
-        motComplet[i] = "\n"
-        // console.log(motComplet[i])
-      }
-    }
-    array.push(motComplet[i])
-    if(array.length === motComplet.length){
-      break;
-    }
+  if(args.length<2){
+    console.log("Erreur")
+  } else {
 
+    for(let i=0; i<a.length;i++){
+      let regex = /[\p{L}]+/gu;
+      motComplet = a.match(regex)
+      for(let j=0;j<b.length;j++){
+        motComplet2 = b.match(regex);
+        if(motComplet[i] === motComplet2[j] ){
+          motComplet[i] = "\n"
+          // console.log(motComplet[i])
+        }
+      }
+      array.push(motComplet[i])
+      if(array.length === motComplet.length){
+        break;
+      }
+  
+    }
   }
   // console.log(motComplet.join(" "))
   // console.log(motComplet2)
