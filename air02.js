@@ -19,14 +19,29 @@ const args = process.argv.slice(2);
 
 function split(a,b){
   let array = [];
+  let motComplet = [];
+  let motComplet2 = [];
   for(let i=0; i<a.length;i++){
-    if(a[i].match(/[a-zA-Z]/g)){
-      array.push(a[i])
-    } else {
-      array.push(b)
+    let regex = /[\p{L}]+/gu;
+    motComplet = a.match(regex)
+    for(let j=0;j<b.length;j++){
+      motComplet2 = b.match(regex);
+      if(motComplet[i] === motComplet2[j] ){
+        motComplet[i] = "\n"
+        // console.log(motComplet[i])
+      }
     }
+    array.push(motComplet[i])
+    if(array.length === motComplet.length){
+      break;
+    }
+
   }
-  console.log(array.join(""))
+  // console.log(motComplet.join(" "))
+  // console.log(motComplet2)
+  // console.log(motComplet.length)
+  // console.log(motComplet2.length)
+  console.log(array.join(" "))
 
 }
 
