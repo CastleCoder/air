@@ -19,15 +19,20 @@ const args = process.argv.slice(2);
 function split(...arg){
 // console.log(arg[1])
 let array = [];
+if(arg.length<2){
+  console.log("Erreur");
+} else {
+
   for(let i=0; i<arg.length-1;i++){
     // console.log(arg[i])
     // if(i<arg.length-1){
 
       array.push(arg[i]);
-      console.log(array[array.length-1])
+      // console.log(array[array.length-1])
     // } 
-    console.log(array.join(arg[arg.length-1]))
   }
+  console.log(array.join(arg[arg.length-1]))
+}
 
 }
 
