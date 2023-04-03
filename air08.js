@@ -25,16 +25,27 @@ function sorted_insert(...arg){
   if(arg.length<2){
     console.log("Erreur");
   } else {
-    for(let i=0; i<array.length-1;i++){
-      for(let j=i+1;j<array.length;j++){
-        if(parseInt(array[j])<parseInt(array[i])){
-          let temp = array[i];
-          array[i] = array[j];
-          array[j] = temp;
-        }
+    let isError = false;
+    for(let i=0; i<array.length;i++){
+      if(isNaN(array[i])){
+        console.log("Erreur");
+        isError = true;
+        break;
       }
+    } if(!isError) {
+      for(let i=0; i<array.length;i++){
+        for(let j=i+1;j<array.length;j++){
+          if(parseInt(array[j])<parseInt(array[i])){
+            let temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+          }
+        }
+
+      }
+      console.log(array.join(" "))
     }
-  }console.log(array.join(" "))
+    }
   
 
 }
