@@ -17,36 +17,53 @@
 
 const args = process.argv.slice(2);
 
-function sorted_fusion(array1, array2){
-  console.log(array1)
-  // array1.push(array1);
-  console.log(array2)
-  if(array1.length<2){
-    console.log("Erreur");
-  } else {
-    let isError = false;
-    for(let i=0; i<array1.length;i++){
-      if(isNaN(array1[i])){
-        console.log("Erreur");
-        isError = true;
-        break;
-      }
-    } if(!isError) {
-      for(let i=0; i<array1.length-1;i++){
-        for(let j=i+1;j<array1.length;j++){
-          if(parseInt(array1[j])<parseInt(array1[i])){
-            let temp = array1[i];
-            array1[i] = array1[j];
-            array1[j] = temp;
-          }
-        }
+function sorted_fusion(...arg){
 
+if(args.length<3){
+  console.log("Erreur");
+  process.exit(1);
+}
+
+let fusionArgument = false;
+for(let i=0; i<args.length;i++){
+  if(args[i]==="fusion"){
+    fusionArgument = true;
+  }
+}
+if(!fusionArgument){
+  console.log("Erreur");
+    process.exit(1)
+}
+
+  let result = [];
+  let array = arg;
+  let indexOfSeparation = array.indexOf("fusion");
+  let array1 = array.slice(0, indexOfSeparation);
+  let array2 = array.slice(indexOfSeparation+1);
+  console.log(array);
+  console.log(array1);
+  console.log(array2);
+  result.push(...array1,...array2);
+
+  for(let i=0;i<result.length-1;i++){
+    for(let j=i+1; j<result.length;j++){
+      let temp;
+      if(parseInt(result[j])<parseInt(result[i])){
+        temp = result[j];
+        result[j] = result[i];
+        result[i] = temp;
       }
-      console.log(array1.join(" "))
+      
     }
-    }
+  }
+  console.log(result);
+  
+
+
+  
   
 
 }
 
 sorted_fusion(...args);
+
